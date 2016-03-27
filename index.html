@@ -1,72 +1,58 @@
 <!DOCTYPE html>
-
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <link rel="stylesheet" href="stylesheets/lilingyu.css">
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Moon-shine.GitHub.io by moon-Shine</title>
-  </head>
-
-  <body>
-    <a id="forkme_banner" href="https://github.com/moon-Shine">View on GitHub</a>
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Moon-shine.GitHub.io</h1>
-            <h2>This moon-Shine&#39;s  web</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <div id="no-downloads">
-        <span class="inner">
-        </span>
-      </div>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <h3>
-<a id="李玲玉个人主页" class="anchor" href="#%E6%9D%8E%E7%8E%B2%E7%8E%89%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>李玲玉个人主页</h3>
-     <p>啥啥不是</p>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>Projects by <a href="https://github.com/moon-Shine">moon-Shine</a> can be found on <a href="https://github.com/moon-Shine">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
-    </div>
-
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/lilingyu.css">
     
-  </body>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/setfontsize.js"></script>
+    <title>李玲玉个人主页</title>
+</head>
+<body>
+    <div ui-view></div>
+    <script>
+        var myApp=angular.module('myApp',['ui.router']);
+        myApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $urlRouterProvider.otherwise('/home');
+            $stateProvider
+                .state('index',{
+                    url:"/home",
+                    views:{
+                        "":{templateUrl:"home.html"},
+                        "home-header@index":{templateUrl:"header.html"},
+                        "home-footer@index":{templateUrl:"bottom.html"},
+                        controller:function($scope,$state){
+                            $state.go("index.first");   // 首页
+                        }
+                    }
+                })
+                .state('index.first',{
+                    url:"/first",
+                    templateUrl:"first.html"
+                })
+                .state('index.photo',{
+                    url:"/photo",
+                    templateUrl:"photo.html"
+//                    controller:function($scope,$state){
+//                        $state.go("index.photo.newset");//设置产品页的默认显示页面
+//                    }
+                })
+                .state('index.showreel',{
+                    url:"/showreel",
+                    templateUrl:"showreel.html"
+                })
+                .state('index.message',{
+                    url:"/message",
+                    templateUrl:"message.html"
+//                    controller:function($scope,$state){
+//                        $state.go("index.photo.newset");//设置产品页的默认显示页面
+//                    }
+                })
+        }])
+    </script>
+        
+</body>
 </html>
->>>>>>> 861a826b6213758205a94225ac8887ec4e61a275
